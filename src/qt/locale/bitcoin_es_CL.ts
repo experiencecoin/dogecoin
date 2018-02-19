@@ -142,8 +142,8 @@
         <translation>Cargando el index de bloques...</translation>
     </message>
     <message>
-        <source>Send coins to a Viacoin address</source>
-        <translation>Enviar monedas a una dirección viacoin</translation>
+        <source>Send coins to a Experiencecoin address</source>
+        <translation>Enviar monedas a una dirección experiencecoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -166,8 +166,8 @@
         <translation>Verificar mensaje....</translation>
     </message>
     <message>
-        <source>Viacoin</source>
-        <translation>Viacoin</translation>
+        <source>Experiencecoin</source>
+        <translation>Experiencecoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -186,7 +186,7 @@
         <translation>&amp;Mostrar/Ocultar</translation>
     </message>
     <message>
-        <source>Sign messages with your Viacoin addresses to prove you own them</source>
+        <source>Sign messages with your Experiencecoin addresses to prove you own them</source>
         <translation>Firmar un mensaje para provar que usted es dueño de esta dirección</translation>
     </message>
     <message>
@@ -206,8 +206,8 @@
         <translation>Barra de pestañas</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and viacoin: URIs)</source>
-        <translation>Pide pagos (genera codigos QR and viacoin: URls)</translation>
+        <source>Request payments (generates QR codes and experiencecoin: URIs)</source>
+        <translation>Pide pagos (genera codigos QR and experiencecoin: URls)</translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -368,8 +368,8 @@
         <translation>experto</translation>
     </message>
     <message>
-        <source>Automatically open the Viacoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abre automáticamente el puerto del cliente Viacoin en el router. Esto funciona solo cuando tu router es compatible con UPnP y está habilitado.</translation>
+        <source>Automatically open the Experiencecoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Abre automáticamente el puerto del cliente Experiencecoin en el router. Esto funciona solo cuando tu router es compatible con UPnP y está habilitado.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -689,7 +689,7 @@
         <translation>Firma</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Viacoin address</source>
+        <source>Sign the message to prove you own this Experiencecoin address</source>
         <translation>Firmar un mensjage para probar que usted es dueño de esta dirección</translation>
     </message>
     <message>
@@ -774,8 +774,8 @@
 </translation>
     </message>
     <message>
-        <source>Viacoin Core</source>
-        <translation>viacoin core</translation>
+        <source>Experiencecoin Core</source>
+        <translation>experiencecoin core</translation>
     </message>
     <message>
         <source>Connect only to the specified node(s)</source>

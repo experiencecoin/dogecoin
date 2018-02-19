@@ -48,9 +48,9 @@ static const int MAX_URI_LENGTH = 255;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 36
 
-#define QAPP_ORG_NAME "Viacoin"
-#define QAPP_ORG_DOMAIN "viacoin.org"
-#define QAPP_APP_NAME_DEFAULT "Viacoin-Qt"
-#define QAPP_APP_NAME_TESTNET "Viacoin-Qt-testnet"
+#define QAPP_ORG_NAME "Experiencecoin"
+#define QAPP_ORG_DOMAIN "experiencecoin.org"
+#define QAPP_APP_NAME_DEFAULT "Experiencecoin-Qt"
+#define QAPP_APP_NAME_TESTNET "Experiencecoin-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

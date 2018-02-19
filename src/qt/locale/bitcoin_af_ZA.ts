@@ -78,8 +78,8 @@
         <translation>&amp;Opsies</translation>
     </message>
     <message>
-        <source>Viacoin</source>
-        <translation>Viacoin</translation>
+        <source>Experiencecoin</source>
+        <translation>Experiencecoin</translation>
     </message>
     <message>
         <source>Wallet</source>

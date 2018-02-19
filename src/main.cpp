@@ -51,7 +51,7 @@
 using namespace std;
 
 #if defined(NDEBUG)
-# error "Viacoin cannot be compiled without assertions."
+# error "Experiencecoin cannot be compiled without assertions."
 #endif
 
 /**
@@ -116,7 +116,7 @@ static void CheckBlockIndex(const Consensus::Params& consensusParams);
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Viacoin Signed Message:\n";
+const string strMessageMagic = "Experiencecoin Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -1556,7 +1556,7 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
         // Remove conflicting transactions from the mempool
         BOOST_FOREACH(const CTxMemPool::txiter it, allConflicting)
         {
-            LogPrint("mempool", "replacing tx %s with %s for %s VIA additional fees, %d delta bytes\n",
+            LogPrint("mempool", "replacing tx %s with %s for %s EPC additional fees, %d delta bytes\n",
                     it->GetTx().GetHash().ToString(),
                     hash.ToString(),
                     FormatMoney(nModifiedFees - nConflictingFees),
@@ -1736,7 +1736,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
         return nSubsidy;
     }
 
-    // Viacoin schedule
+    // Experiencecoin schedule
     CAmount nSubsidy = 0;
 
     // different zero block period for testnet and mainnet
@@ -2314,7 +2314,7 @@ bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, unsigne
 static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck() {
-    RenameThread("viacoin-scriptch");
+    RenameThread("experiencecoin-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -3649,7 +3649,7 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     }
 
     // Reject outdated version blocks when 95% (75% on testnet) of the network has upgraded:
-    for (int32_t version = 4; version <= 6; ++version) // Viacoin check for version 3, 4 and 5 upgrades
+    for (int32_t version = 4; version <= 6; ++version) // Experiencecoin check for version 3, 4 and 5 upgrades
         if ((block.nVersion & 0xFF) < VERSIONBITS_TOP_BITS
             && (block.nVersion & 0xFF) < version
             && IsSuperMajority(version, pindexPrev, consensusParams.nMajorityRejectBlockOutdated, consensusParams))
@@ -3883,7 +3883,7 @@ static bool IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned 
     unsigned int nFound = 0;
     for (int i = 0; i < consensusParams.nMajorityWindow && nFound < nRequired && pstart != NULL; i++)
     {
-        // Viacoin mask off the Chain_ID and AuxPow version
+        // Experiencecoin mask off the Chain_ID and AuxPow version
         if ((pstart->nVersion & 0xFF) >= (minVersion & 0xFF))
             ++nFound;
         pstart = pstart->pprev;
@@ -4246,7 +4246,7 @@ bool CVerifyDB::VerifyDB(const CChainParams& chainparams, CCoinsView *coinsview,
 
     // Verify blocks in the best chain
     if (nCheckDepth <= 0)
-	// Viacoin: Didn't 25x value due to integer wrap around
+	// Experiencecoin: Didn't 25x value due to integer wrap around
         nCheckDepth = std::numeric_limits<int>::max();
     if (nCheckDepth > chainActive.Height())
         nCheckDepth = chainActive.Height();

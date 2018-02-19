@@ -126,8 +126,8 @@
         <translation>Abrir &amp;URL...</translation>
     </message>
     <message>
-        <source>Send coins to a Viacoin address</source>
-        <translation>Enviando monedas a una dirección de Viacoin</translation>
+        <source>Send coins to a Experiencecoin address</source>
+        <translation>Enviando monedas a una dirección de Experiencecoin</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
@@ -146,8 +146,8 @@
         <translation>&amp;Verificar Mensaje...</translation>
     </message>
     <message>
-        <source>Viacoin</source>
-        <translation>Viacoin</translation>
+        <source>Experiencecoin</source>
+        <translation>Experiencecoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -290,8 +290,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Viacoin Core</source>
-        <translation>Viacoin Core</translation>
+        <source>Experiencecoin Core</source>
+        <translation>Experiencecoin Core</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

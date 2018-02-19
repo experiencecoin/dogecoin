@@ -146,8 +146,8 @@
         <translation>Дискдаги блоклар қайта индексланмоқда...</translation>
     </message>
     <message>
-        <source>Send coins to a Viacoin address</source>
-        <translation>Тангаларни Viacoin манзилига жўнатиш</translation>
+        <source>Send coins to a Experiencecoin address</source>
+        <translation>Тангаларни Experiencecoin манзилига жўнатиш</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -170,8 +170,8 @@
         <translation>Хабарни &amp;тасдиқлаш...</translation>
     </message>
     <message>
-        <source>Viacoin</source>
-        <translation>Viacoin</translation>
+        <source>Experiencecoin</source>
+        <translation>Experiencecoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -198,12 +198,12 @@
         <translation>Ҳамёнингизга тегишли махфий калитларни кодлаш</translation>
     </message>
     <message>
-        <source>Sign messages with your Viacoin addresses to prove you own them</source>
-        <translation>Viacoin манзилидан унинг эгаси эканлигингизни исботлаш учун хабарлар ёзинг</translation>
+        <source>Sign messages with your Experiencecoin addresses to prove you own them</source>
+        <translation>Experiencecoin манзилидан унинг эгаси эканлигингизни исботлаш учун хабарлар ёзинг</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Viacoin addresses</source>
-        <translation>Хабарларни махсус Viacoin манзилларингиз билан ёзилганлигига ишонч ҳосил қилиш учун уларни тасдиқланг</translation>
+        <source>Verify messages to ensure they were signed with specified Experiencecoin addresses</source>
+        <translation>Хабарларни махсус Experiencecoin манзилларингиз билан ёзилганлигига ишонч ҳосил қилиш учун уларни тасдиқланг</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -222,8 +222,8 @@
         <translation>Ички ойналар асбоблар панели</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and viacoin: URIs)</source>
-        <translation>Тўловлар (QR кодлари ва viacoin ёрдамида яратишлар: URI’лар) сўраш</translation>
+        <source>Request payments (generates QR codes and experiencecoin: URIs)</source>
+        <translation>Тўловлар (QR кодлари ва experiencecoin ёрдамида яратишлар: URI’лар) сўраш</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -234,16 +234,16 @@
         <translation>Фойдаланилган қабул қилинган манзиллар ва ёрлиқлар рўйхатини кўрсатиш</translation>
     </message>
     <message>
-        <source>Open a viacoin: URI or payment request</source>
-        <translation>Viacoin’ни очиш: URI ёки тўлов сўрови</translation>
+        <source>Open a experiencecoin: URI or payment request</source>
+        <translation>Experiencecoin’ни очиш: URI ёки тўлов сўрови</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>&amp;Буйруқлар сатри мосламалари</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Viacoin network</source>
-        <translation><numerusform>%n та Viacoin тармоғига фаол уланиш мавжуд</numerusform></translation>
+        <source>%n active connection(s) to Experiencecoin network</source>
+        <translation><numerusform>%n та Experiencecoin тармоғига фаол уланиш мавжуд</numerusform></translation>
     </message>
     <message>
         <source>No block source available...</source>
@@ -622,8 +622,8 @@
         <translation>Шакл</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Viacoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Кўрсатилган маълумот эскирган бўлиши мумкин. Ҳамёнингиз алоқа ўрнатилгандан сўнг Viacoin тармоқ билан автоматик тарзда синхронланади, аммо жараён ҳалигача тугалланмади.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Experiencecoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>Кўрсатилган маълумот эскирган бўлиши мумкин. Ҳамёнингиз алоқа ўрнатилгандан сўнг Experiencecoin тармоқ билан автоматик тарзда синхронланади, аммо жараён ҳалигача тугалланмади.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -707,8 +707,8 @@
         <translation>Миқдори</translation>
     </message>
     <message>
-        <source>Enter a Viacoin address (e.g. %1)</source>
-        <translation>Viacoin манзилини киритинг (масалан.  %1)</translation>
+        <source>Enter a Experiencecoin address (e.g. %1)</source>
+        <translation>Experiencecoin манзилини киритинг (масалан.  %1)</translation>
     </message>
     <message>
         <source>%1 m</source>
@@ -1234,8 +1234,8 @@
         <translation>Демон сифатида орқа фонда ишга туширинг ва буйруқларга рози бўлинг</translation>
     </message>
     <message>
-        <source>Viacoin Core</source>
-        <translation>Viacoin Core</translation>
+        <source>Experiencecoin Core</source>
+        <translation>Experiencecoin Core</translation>
     </message>
     <message>
         <source>Connection options:</source>

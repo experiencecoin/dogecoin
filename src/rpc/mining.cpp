@@ -190,7 +190,7 @@ UniValue generatetoaddress(const UniValue& params, bool fHelp)
             "\nMine blocks immediately to a specified address (before the RPC call returns)\n"
             "\nArguments:\n"
             "1. numblocks    (numeric, required) How many blocks are generated immediately.\n"
-            "2. address    (string, required) The address to send the newly generated viacoin to.\n"
+            "2. address    (string, required) The address to send the newly generated experiencecoin to.\n"
             "3. maxtries     (numeric, optional) How many iterations to try (default = 1000000).\n"
             "\nResult\n"
             "[ blockhashes ]     (array) hashes of blocks generated\n"
@@ -465,10 +465,10 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid mode");
 
     if (vNodes.empty())
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Viacoin is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Experiencecoin is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Viacoin is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Experiencecoin is downloading blocks...");
 
     static unsigned int nTransactionsUpdatedLast;
 
@@ -618,7 +618,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
     UniValue aRules(UniValue::VARR);
     UniValue vbavailable(UniValue::VOBJ);
 
-    // Viacoin: only set the deployment bits if the version we get
+    // Experiencecoin: only set the deployment bits if the version we get
     // from the CBlockTemplate is actually using deployments
     if ((pblock->nVersion & VERSIONBITS_TOP_MASK) != 0) {
         for (int i = 0; i < (int)Consensus::MAX_VERSION_BITS_DEPLOYMENTS; ++i) {
@@ -805,10 +805,10 @@ UniValue getauxblock(const UniValue& params, bool fHelp)
             );
 
     if (vNodes.empty())
-        throw JSONRPCError(-9, "Viacoin is not connected!");
+        throw JSONRPCError(-9, "Experiencecoin is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(-10, "Viacoin is downloading blocks...");
+        throw JSONRPCError(-10, "Experiencecoin is downloading blocks...");
 
     static map<uint256, CBlock*> mapNewBlock;
     static vector< std::unique_ptr<CBlockTemplate> > vNewBlockTemplate;
@@ -997,7 +997,7 @@ UniValue estimatesmartfee(const UniValue& params, bool fHelp)
             "1. nblocks     (numeric)\n"
             "\nResult:\n"
             "{\n"
-            "  \"feerate\" : x.x,     (numeric) estimate fee-per-kilobyte (in VIA)\n"
+            "  \"feerate\" : x.x,     (numeric) estimate fee-per-kilobyte (in EPC)\n"
             "  \"blocks\" : n         (numeric) block number where estimate was found\n"
             "}\n"
             "\n"

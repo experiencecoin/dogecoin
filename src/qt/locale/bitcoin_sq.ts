@@ -94,8 +94,8 @@
         <translation>Ndrysho frazkalimin e përdorur per enkriptimin e portofolit</translation>
     </message>
     <message>
-        <source>Viacoin</source>
-        <translation>Viacoin</translation>
+        <source>Experiencecoin</source>
+        <translation>Experiencecoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -438,8 +438,8 @@
         <translation>Opsionet:</translation>
     </message>
     <message>
-        <source>Viacoin Core</source>
-        <translation>Berthama Viacoin</translation>
+        <source>Experiencecoin Core</source>
+        <translation>Berthama Experiencecoin</translation>
     </message>
     <message>
         <source>Information</source>

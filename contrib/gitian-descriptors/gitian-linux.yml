@@ -1,5 +1,5 @@
 ---
-name: "viacoin-linux-0.13"
+name: "experiencecoin-linux-0.13"
 enable_cache: true
 suites:
 - "trusty"
@@ -28,8 +28,8 @@ packages:
 - "ca-certificates"
 - "python"
 remotes:
-- "url": "https://github.com/viacoin/viacoin.git"
-  "dir": "viacoin"
+- "url": "https://github.com/experiencecoin/experiencecoin.git"
+  "dir": "experiencecoin"
 files: []
 script: |
 
@@ -113,7 +113,7 @@ script: |
   chmod +x ${WRAP_DIR}/${prog}
   done
 
-  cd viacoin
+  cd experiencecoin
   BASEPREFIX=`pwd`/depends
   # Build dependencies for each host
   for i in $HOSTS; do
@@ -135,13 +135,13 @@ script: |
   ./autogen.sh
   CONFIG_SITE=${BASEPREFIX}/`echo "${HOSTS}" | awk '{print $1;}'`/share/config.site ./configure --prefix=/
   make dist
-  SOURCEDIST=`echo viacoin-*.tar.gz`
+  SOURCEDIST=`echo experiencecoin-*.tar.gz`
   DISTNAME=`echo ${SOURCEDIST} | sed 's/.tar.*//'`
   # Correct tar file order
   mkdir -p temp
   pushd temp
   tar xf ../$SOURCEDIST
-  find viacoin-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
+  find experiencecoin-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
   popd
 
   ORIGPATH="$PATH"
@@ -174,10 +174,10 @@ script: |
     find . -name "lib*.a" -delete
     rm -rf ${DISTNAME}/lib/pkgconfig
 
-    # Viacoin: Delete libbitcoin from binary distribution for now, see Litecoin Issue #192
+    # Experiencecoin: Delete libbitcoin from binary distribution for now, see Litecoin Issue #192
     rm -rf ${DISTNAME}/lib/
     rm -rf ${DISTNAME}/include/
-    # Viacoin: ends
+    # Experiencecoin: ends
 
     find ${DISTNAME}/bin -type f -executable -exec ../contrib/devtools/split-debug.sh {} {} {}.dbg \;
     #find ${DISTNAME}/lib -type f -exec ../contrib/devtools/split-debug.sh {} {} {}.dbg \; # see Litecoin issue #192

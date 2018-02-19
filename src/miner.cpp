@@ -149,9 +149,9 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     if (chainparams.MineBlocksOnDemand())
         pblock->nVersion = GetArg("-blockversion", pblock->nVersion);
 
-    // Viacoin: CHAIN_ID and BLOCK_VERSION_AUXPOW bits are reserved for viacoin merged mining
-    // Viacoin: and can safely be OR'd into the block version without overwriting BIP9 deployment
-    // Viacoin: bits. BIP9 deployments on Viacoin can use any other bits
+    // Experiencecoin: CHAIN_ID and BLOCK_VERSION_AUXPOW bits are reserved for experiencecoin merged mining
+    // Experiencecoin: and can safely be OR'd into the block version without overwriting BIP9 deployment
+    // Experiencecoin: bits. BIP9 deployments on Experiencecoin can use any other bits
     pblock->nVersion |= (AuxPow::CHAIN_ID * AuxPow::BLOCK_VERSION_CHAIN_START);
 
     pblock->nTime = GetAdjustedTime();

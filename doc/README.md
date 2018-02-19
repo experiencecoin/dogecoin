@@ -1,39 +1,39 @@
-Viacoin Core 0.13.2
+Experiencecoin Core 0.13.2
 =====================
 
 Setup
 ---------------------
-[Viacoin Core](http://viacoin.org/en/download) is the original Viacoin client and it builds the backbone of the network. However, it downloads and stores the entire history of Viacoin transactions (which is currently several GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+[Experiencecoin Core](http://experiencecoin.org/en/download) is the original Experiencecoin client and it builds the backbone of the network. However, it downloads and stores the entire history of Experiencecoin transactions (which is currently several GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
 Running
 ---------------------
-The following are some helpful notes on how to run Viacoin on your native platform.
+The following are some helpful notes on how to run Experiencecoin on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/viacoin-qt` (GUI) or
-- `bin/viacoind` (headless)
+- `bin/experiencecoin-qt` (GUI) or
+- `bin/experiencecoind` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run viacoin-qt.exe.
+Unpack the files into a directory, and then run experiencecoin-qt.exe.
 
 ### OS X
 
-Drag Viacoin-Core to your applications folder, and then run Viacoin-Core.
+Drag Experiencecoin-Core to your applications folder, and then run Experiencecoin-Core.
 
 ### Need Help?
 
-* See the documentation at the [Viacoin Wiki](https://viacoin.info/)
+* See the documentation at the [Experiencecoin Wiki](https://experiencecoin.info/)
 for help and more information.
-* Ask for help on [#viacoin](http://webchat.freenode.net?channels=viacoin) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net?channels=viacoin).
-* Ask for help on the [ViacoinTalk](https://viacointalk.io/) forums.
+* Ask for help on [#experiencecoin](http://webchat.freenode.net?channels=experiencecoin) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net?channels=experiencecoin).
+* Ask for help on the [ExperiencecoinTalk](https://experiencecointalk.io/) forums.
 
 Building
 ---------------------
-The following are developer notes on how to build Viacoin on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Experiencecoin on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OS X Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
@@ -43,7 +43,7 @@ The following are developer notes on how to build Viacoin on your native platfor
 
 Development
 ---------------------
-The Viacoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Experiencecoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -60,8 +60,8 @@ The Viacoin repo's [root README](/README.md) contains relevant information on th
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [ViacoinTalk](https://viacointalk.io/) forums.
-* Discuss project-specific development on #viacoin on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=viacoin).
+* Discuss on the [ExperiencecoinTalk](https://experiencecointalk.io/) forums.
+* Discuss project-specific development on #experiencecoin on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=experiencecoin).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

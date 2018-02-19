@@ -65,11 +65,11 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += viacoind
+  bin_PROGRAMS += experiencecoind
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += viacoin-cli viacoin-tx
+  bin_PROGRAMS += experiencecoin-cli experiencecoin-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
@@ -345,16 +345,16 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-viacoind_SOURCES = bitcoind.cpp
-viacoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-viacoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-viacoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+experiencecoind_SOURCES = bitcoind.cpp
+experiencecoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+experiencecoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+experiencecoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-viacoind_SOURCES += bitcoind-res.rc
+experiencecoind_SOURCES += bitcoind-res.rc
 endif
 
-viacoind_LDADD = \
+experiencecoind_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBUNIVALUE) \
@@ -367,38 +367,38 @@ viacoind_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-viacoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+experiencecoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
 # bitcoin-cli binary #
-viacoin_cli_SOURCES = bitcoin-cli.cpp
-viacoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-viacoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-viacoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+experiencecoin_cli_SOURCES = bitcoin-cli.cpp
+experiencecoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+experiencecoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+experiencecoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-viacoin_cli_SOURCES += bitcoin-cli-res.rc
+experiencecoin_cli_SOURCES += bitcoin-cli-res.rc
 endif
 
-viacoin_cli_LDADD = \
+experiencecoin_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-viacoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+experiencecoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # bitcoin-tx binary #
-viacoin_tx_SOURCES = bitcoin-tx.cpp
-viacoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-viacoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-viacoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+experiencecoin_tx_SOURCES = bitcoin-tx.cpp
+experiencecoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+experiencecoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+experiencecoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-viacoin_tx_SOURCES += bitcoin-tx-res.rc
+experiencecoin_tx_SOURCES += bitcoin-tx-res.rc
 endif
 
-viacoin_tx_LDADD = \
+experiencecoin_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -406,7 +406,7 @@ viacoin_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-viacoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+experiencecoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #

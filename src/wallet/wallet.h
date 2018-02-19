@@ -167,9 +167,9 @@ private:
 public:
     uint256 hashBlock;
 
-    // Viacoin: SegWit removed the coinbase merkle tree and only included it for
-    // Viacoin: backwards compatibility with older bitcoin clients.
-    // Viacoin: Viacoin still needs it here
+    // Experiencecoin: SegWit removed the coinbase merkle tree and only included it for
+    // Experiencecoin: backwards compatibility with older bitcoin clients.
+    // Experiencecoin: Experiencecoin still needs it here
     std::vector<uint256> vMerkleBranch;
 
     /* An nIndex == -1 means that hashBlock (in nonzero) refers to the earliest

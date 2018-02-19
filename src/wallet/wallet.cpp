@@ -2545,11 +2545,11 @@ CAmount CWallet::GetMinimumFee(unsigned int nTxBytes, unsigned int nConfirmTarge
     // payTxFee is user-set "I want to pay this much"
     CAmount nFeeNeeded = payTxFee.GetFee(nTxBytes);
 
-    // start Viacoin: enforce the lower bound (new code)
+    // start Experiencecoin: enforce the lower bound (new code)
     CAmount nFeeNeededFromPool = pool.estimateFee(nConfirmTarget).GetFee(nTxBytes);
     if (nFeeNeeded < nFeeNeededFromPool)
         nFeeNeeded = nFeeNeededFromPool;
-    // end Viacoin
+    // end Experiencecoin
 
     // User didn't set: use -txconfirmtarget to estimate...
     if (nFeeNeeded == 0) {

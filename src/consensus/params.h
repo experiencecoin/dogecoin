@@ -46,7 +46,7 @@ struct Params {
     /** Block height and hash at which BIP34 becomes active */
     int BIP34Height;
     uint256 BIP34Hash;
-    /** CHECKLOCKVERIFY, BIP66 and AuxPow starting heights for Viacoin */
+    /** CHECKLOCKVERIFY, BIP66 and AuxPow starting heights for Experiencecoin */
     int nCLTVStartBlock;
     int nBIP66MinStartBlock;
     int nAuxPowStartHeight;

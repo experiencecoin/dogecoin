@@ -629,15 +629,15 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     std::vector<CTransaction*>txFirst;
     for (unsigned int i = 0; i < sizeof(blockinfo)/sizeof(*blockinfo); ++i)
     {
-        // Viacoin: Begin
+        // Experiencecoin: Begin
         if (i == 1 || i >= 3599) {
-            // Viacoin needs coinbase value reset after first block; diff change starts at block 3600
+            // Experiencecoin needs coinbase value reset after first block; diff change starts at block 3600
             uint256 hashPrevBlock = pblocktemplate->block.hashPrevBlock;
             pblocktemplate.reset();
             BOOST_CHECK(pblocktemplate = BlockAssembler(chainparams).CreateNewBlock(scriptPubKey));
             pblocktemplate->block.hashPrevBlock = hashPrevBlock;
         }
-        // Viacoin: End
+        // Experiencecoin: End
         CBlock *pblock = &pblocktemplate->block; // pointer for convenience
         pblock->nVersion = 1;
         pblock->nTime = chainActive.Tip()->GetMedianTimePast()+1;
@@ -645,7 +645,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         txCoinbase.nVersion = 1;
         txCoinbase.vin[0].scriptSig = CScript();
         txCoinbase.vin[0].scriptSig.push_back(blockinfo[i].extranonce);
-        txCoinbase.vin[0].scriptSig.push_back(chainActive.Height() >> 8); // Viacoin
+        txCoinbase.vin[0].scriptSig.push_back(chainActive.Height() >> 8); // Experiencecoin
         txCoinbase.vin[0].scriptSig.push_back(chainActive.Height());
         txCoinbase.vout.resize(1); // Ignore the (optional) segwit commitment added by CreateNewBlock (as the hardcoded nonces don't account for this)
         txCoinbase.vout[0].scriptPubKey = CScript();
@@ -748,7 +748,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     tx.vout[0].nValue = tx.vout[0].nValue+BLOCKSUBSIDY-HIGHERFEE; //First txn output + fresh coinbase - new txn fee
     hash = tx.GetHash();
     mempool.addUnchecked(hash, entry.Fee(HIGHERFEE).Time(GetTime()).SpendsCoinbase(true).FromTx(tx));
-    // Viacoin has zero reward in genesys, unspendable
+    // Experiencecoin has zero reward in genesys, unspendable
     // BOOST_CHECK(pblocktemplate = BlockAssembler(chainparams).CreateNewBlock(scriptPubKey));
     pblocktemplate.reset();
     mempool.clear();
@@ -908,7 +908,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     tx.vin[0].nSequence = CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG | 1;
     BOOST_CHECK(!TestSequenceLocks(tx, flags)); // Sequence locks fail
 
-    // Viacoin cannot spend multiple inputs as starting blocks have a single non-zero one
+    // Experiencecoin cannot spend multiple inputs as starting blocks have a single non-zero one
 /*
     BOOST_CHECK(pblocktemplate = BlockAssembler(chainparams).CreateNewBlock(scriptPubKey));
     BOOST_CHECK_EQUAL(pblocktemplate->block.vtx.size(), 2);
@@ -933,7 +933,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     SetMockTime(0);
     mempool.clear();
 
-    // Viacoin cannot spend multiple inputs as starting blocks have a single non-zero one
+    // Experiencecoin cannot spend multiple inputs as starting blocks have a single non-zero one
     //TestPackageSelection(chainparams, scriptPubKey, txFirst);
 
     BOOST_FOREACH(CTransaction *_tx, txFirst)

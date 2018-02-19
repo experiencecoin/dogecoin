@@ -17,7 +17,7 @@ osx=true
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/viacoin/viacoin
+url=https://github.com/experiencecoin/experiencecoin
 proc=2
 mem=2000
 lxc=true
@@ -31,7 +31,7 @@ commitFiles=true
 read -d '' usage <<- EOF
 Usage: $scriptName [-c|u|v|b|s|B|o|h|j|m|] signer version
 
-Run this script from the directory containing the viacoin, gitian-builder, gitian.sigs.via, and viacoin-detached-sigs.
+Run this script from the directory containing the experiencecoin, gitian-builder, gitian.sigs.via, and experiencecoin-detached-sigs.
 
 Arguments:
 signer          GPG signer to sign each build assert file
@@ -39,7 +39,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/viacoin/viacoin
+-u|--url	Specify the URL of the repository. Default is https://github.com/experiencecoin/experiencecoin
 -v|--verify 	Verify the gitian build
 -b|--build	Do a gitiain build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -233,8 +233,8 @@ if [[ $setup = true ]]
 then
     ## TODO LED we don't have these gitian sigs or detached sigs as git repos...-> for romano to create
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/viacoin/gitian.sigs.via.git
-    git clone https://github.com/viacoin/viacoin-detached-sigs.git
+    git clone https://github.com/experiencecoin/gitian.sigs.via.git
+    git clone https://github.com/experiencecoin/experiencecoin-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
@@ -248,7 +248,7 @@ then
 fi
 
 # Set up build
-pushd ./viacoin
+pushd ./experiencecoin
 git fetch
 git checkout ${COMMIT}
 popd
@@ -257,7 +257,7 @@ popd
 if [[ $build = true ]]
 then
 	# Make output folder
-	mkdir -p ./viacoin-binaries/${VERSION}
+	mkdir -p ./experiencecoin-binaries/${VERSION}
 
 	# Build Dependencies
 	echo ""
@@ -267,7 +267,7 @@ then
 	mkdir -p inputs
 	wget -N -P inputs $osslPatchUrl
 	wget -N -P inputs $osslTarUrl
-	make -C ../viacoin/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../experiencecoin/depends download SOURCES_PATH=`pwd`/cache/common
 
 	# Linux
 	if [[ $linux = true ]]
@@ -275,9 +275,9 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit viacoin=${COMMIT} --url viacoin=${url} ../viacoin/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs.via/ ../viacoin/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/viacoin-*.tar.gz build/out/src/viacoin-*.tar.gz ../viacoin-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit experiencecoin=${COMMIT} --url experiencecoin=${url} ../experiencecoin/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs.via/ ../experiencecoin/contrib/gitian-descriptors/gitian-linux.yml
+	    mv build/out/experiencecoin-*.tar.gz build/out/src/experiencecoin-*.tar.gz ../experiencecoin-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -285,10 +285,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit viacoin=${COMMIT} --url viacoin=${url} ../viacoin/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs.via/ ../viacoin/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/viacoin-*-win-unsigned.tar.gz inputs/viacoin-win-unsigned.tar.gz
-	    mv build/out/viacoin-*.zip build/out/viacoin-*.exe ../viacoin-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit experiencecoin=${COMMIT} --url experiencecoin=${url} ../experiencecoin/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs.via/ ../experiencecoin/contrib/gitian-descriptors/gitian-win.yml
+	    mv build/out/experiencecoin-*-win-unsigned.tar.gz inputs/experiencecoin-win-unsigned.tar.gz
+	    mv build/out/experiencecoin-*.zip build/out/experiencecoin-*.exe ../experiencecoin-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -296,10 +296,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit viacoin=${COMMIT} --url viacoin=${url} ../viacoin/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.via/ ../viacoin/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/viacoin-*-osx-unsigned.tar.gz inputs/viacoin-osx-unsigned.tar.gz
-	    mv build/out/viacoin-*.tar.gz build/out/viacoin-*.dmg ../viacoin-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit experiencecoin=${COMMIT} --url experiencecoin=${url} ../experiencecoin/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.via/ ../experiencecoin/contrib/gitian-descriptors/gitian-osx.yml
+	    mv build/out/experiencecoin-*-osx-unsigned.tar.gz inputs/experiencecoin-osx-unsigned.tar.gz
+	    mv build/out/experiencecoin-*.tar.gz build/out/experiencecoin-*.dmg ../experiencecoin-binaries/${VERSION}
 	fi
 	popd
 
@@ -326,27 +326,27 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Linux"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs.via/ -r ${VERSION}-linux ../viacoin/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs.via/ -r ${VERSION}-linux ../experiencecoin/contrib/gitian-descriptors/gitian-linux.yml
 	# Windows
 	echo ""
 	echo "Verifying v${VERSION} Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs.via/ -r ${VERSION}-win-unsigned ../viacoin/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs.via/ -r ${VERSION}-win-unsigned ../experiencecoin/contrib/gitian-descriptors/gitian-win.yml
 	# Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs.via/ -r ${VERSION}-osx-unsigned ../viacoin/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs.via/ -r ${VERSION}-osx-unsigned ../experiencecoin/contrib/gitian-descriptors/gitian-osx.yml
 	# Signed Windows
 	echo ""
 	echo "Verifying v${VERSION} Signed Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs.via/ -r ${VERSION}-osx-signed ../viacoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs.via/ -r ${VERSION}-osx-signed ../experiencecoin/contrib/gitian-descriptors/gitian-osx-signer.yml
 	# Signed Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs.via/ -r ${VERSION}-osx-signed ../viacoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs.via/ -r ${VERSION}-osx-signed ../experiencecoin/contrib/gitian-descriptors/gitian-osx-signer.yml
 	popd
 fi
 
@@ -361,10 +361,10 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../viacoin/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs.via/ ../viacoin/contrib/gitian-descriptors/gitian-win-signer.yml
-	    mv build/out/viacoin-*win64-setup.exe ../viacoin-binaries/${VERSION}
-	    mv build/out/viacoin-*win32-setup.exe ../viacoin-binaries/${VERSION}
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../experiencecoin/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs.via/ ../experiencecoin/contrib/gitian-descriptors/gitian-win-signer.yml
+	    mv build/out/experiencecoin-*win64-setup.exe ../experiencecoin-binaries/${VERSION}
+	    mv build/out/experiencecoin-*win32-setup.exe ../experiencecoin-binaries/${VERSION}
 	fi
 	# Sign Mac OSX
 	if [[ $osx = true ]]
@@ -372,9 +372,9 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../viacoin/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs.via/ ../viacoin/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    mv build/out/viacoin-osx-signed.dmg ../viacoin-binaries/${VERSION}/viacoin-${VERSION}-osx.dmg
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../experiencecoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs.via/ ../experiencecoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    mv build/out/experiencecoin-osx-signed.dmg ../experiencecoin-binaries/${VERSION}/experiencecoin-${VERSION}-osx.dmg
 	fi
 	popd
 

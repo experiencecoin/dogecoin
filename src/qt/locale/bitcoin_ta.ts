@@ -90,8 +90,8 @@
         <translation>&amp;செய்தியை சரிசெய்...</translation>
     </message>
     <message>
-        <source>Viacoin</source>
-        <translation>Viacoin</translation>
+        <source>Experiencecoin</source>
+        <translation>Experiencecoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -714,8 +714,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Viacoin Core</source>
-        <translation>Viacoin மையம்</translation>
+        <source>Experiencecoin Core</source>
+        <translation>Experiencecoin மையம்</translation>
     </message>
     <message>
         <source>(default: %u)</source>

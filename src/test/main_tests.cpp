@@ -38,7 +38,7 @@ static void TestBlockSubsidyHalvings(int nSubsidyHalvingInterval)
 
 BOOST_AUTO_TEST_CASE(block_subsidy_test)
 {
-    // Viacoin: doesn't do generic halvings, so we test for the expected subsidy schedule
+    // Experiencecoin: doesn't do generic halvings, so we test for the expected subsidy schedule
 
     // TestBlockSubsidyHalvings(Params(CBaseChainParams::MAIN).GetConsensus()); // As in main
     // TestBlockSubsidyHalvings(150); // As in regtest
