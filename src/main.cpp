@@ -1723,6 +1723,7 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
 
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
+    CAmount nSubsidy;
     // In -regtest mode use Bitcoin schedule
     if (Params().MineBlocksOnDemand() && consensusParams.fPowAllowMinDifficultyBlocks) {
         int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
@@ -1730,46 +1731,22 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
         if (halvings >= 64)
                 return 0;
 
-        CAmount nSubsidy = 50 * COIN;
+        nSubsidy = 50 * COIN;
         // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
         nSubsidy >>= halvings;
         return nSubsidy;
     }
-
-    // Experiencecoin schedule
-    CAmount nSubsidy = 0;
-
-    // different zero block period for testnet and mainnet
-    // mainnet not fixed until final release
-    int zeroRewardHeight = consensusParams.fPowAllowMinDifficultyBlocks ? 2001 : 10001;
-
-    int rampHeight = 43200 + zeroRewardHeight; // 4 periods of 10800
-
-    if (nHeight == 0) {
-        // no reward for genesis block
-        nSubsidy = 0;
-    } else if (nHeight == 1) {
-        // first distribution
-        nSubsidy = 10000000 * COIN;
-    } else if (nHeight <= zeroRewardHeight) {
-        // no block reward to allow difficulty to scale up and prevent instamining
-        nSubsidy = 0;
-    } else if (nHeight <= (zeroRewardHeight + 10800)) {
-        // first 10800 block after zero reward period is 10 coins per block
-        nSubsidy = 10 * COIN;
-    } else if (nHeight <= rampHeight) {
-        // every 10800 blocks reduce nSubsidy from 8 to 6
-        nSubsidy = (8 - int((nHeight-zeroRewardHeight-1) / 10800)) * COIN;
-    } else if (nHeight <= 1971000) {
-        nSubsidy = 5 * COIN;
-    } else { // (nHeight > 1971000)
-        int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
-        // Force block reward to zero when right shift is undefined.
-        if (halvings <= 64) {
-            nSubsidy = 20 * COIN;
-            nSubsidy >>= halvings;
-        }
-    }
+    
+    int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
+    // Force block reward to zero when right shift is undefined.
+    if (halvings >= 64)
+        return 0;
+    if (nHeight >= 1080000)
+        nSubsidy = 64 * COIN;
+    else
+        nSubsidy = 17500 * COIN;
+    // Subsidy is cut in half every 25600000 blocks which will occur approximately every 49 years.
+    nSubsidy >>= halvings;
 
     return nSubsidy;
 }
@@ -2000,7 +1977,18 @@ int GetSpendHeight(const CCoinsViewCache& inputs)
     CBlockIndex* pindexPrev = mapBlockIndex.find(inputs.GetBestBlock())->second;
     return pindexPrev->nHeight + 1;
 }
+int GetRequiredMaturityDepth(int nHeight)
+{
 
+    if (nHeight >= COINBASE_MATURITY_SWITCH)
+    {
+        return COINBASE_MATURITY_NEW;
+    }
+    else
+    {
+        return COINBASE_MATURITY;
+    }
+}
 namespace Consensus {
 bool CheckTxInputs(const CTransaction& tx, CValidationState& state, const CCoinsViewCache& inputs, int nSpendHeight)
 {
@@ -2009,8 +1997,6 @@ bool CheckTxInputs(const CTransaction& tx, CValidationState& state, const CCoins
         if (!inputs.HaveInputs(tx))
             return state.Invalid(false, 0, "", "Inputs unavailable");
 
-        static const int nMaturity = ::Params().GetConsensus().fPowNoRetargeting ?
-            COINBASE_MATURITY_REGTEST : COINBASE_MATURITY;
         CAmount nValueIn = 0;
         CAmount nFees = 0;
         for (unsigned int i = 0; i < tx.vin.size(); i++)
@@ -2021,7 +2007,8 @@ bool CheckTxInputs(const CTransaction& tx, CValidationState& state, const CCoins
 
             // If prev is coinbase, check that it's matured
             if (coins->IsCoinBase()) {
-                if (nSpendHeight - coins->nHeight < nMaturity)
+                int minDepth = GetRequiredMaturityDepth(coins->nHeight);
+                if (nSpendHeight - coins->nHeight < minDepth)
                     return state.Invalid(false,
                         REJECT_INVALID, "bad-txns-premature-spend-of-coinbase",
                         strprintf("tried to spend coinbase at depth %d", nSpendHeight - coins->nHeight));
@@ -3634,9 +3621,9 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
         }
 
         // Check timestamp is not too far in the past (timewarp)
-        if (block.GetBlockTime() <= pindexPrev->GetBlockTime() - timeframe) {
+/*        if (block.GetBlockTime() <= pindexPrev->GetBlockTime() - timeframe) {
             return error("AcceptBlock() : block's timestamp is too early compare to last block");
-        }
+        }*/
     }
 
     // Hard fork to introduce OP_CHECKLOCKTIMEVERIFY at the same time as AuxPow
