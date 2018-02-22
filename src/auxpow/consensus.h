@@ -11,7 +11,7 @@ const int START_MAINNET = 498725;
 const int START_TESTNET = 452608;
 const int START_REGTEST = 452608;
 
-const int CHAIN_ID = 0x56;
+static const int CHAIN_ID = 0x62;
 
 enum
 {
