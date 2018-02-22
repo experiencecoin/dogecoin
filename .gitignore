@@ -1,12 +1,12 @@
 *.tar.gz
 
 *.exe
-src/viacoin
-src/viacoind
-src/viacoin-cli
-src/viacoin-tx
-src/test/test_viacoin
-src/qt/test/test_viacoin-qt
+src/experiencecoin
+src/experiencecoind
+src/experiencecoin-cli
+src/experiencecoin-tx
+src/test/test_experiencecoin
+src/qt/test/test_experiencecoin-qt
 
 # autoreconf
 Makefile.in
