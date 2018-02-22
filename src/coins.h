@@ -242,6 +242,10 @@ public:
     //! mark a vout spent
     bool Spend(uint32_t nPos);
 
+    bool IsSpent(uint32_t nPos) const {
+        return vout[nPos].IsNull();
+    }
+
     //! check whether a particular output is still available
     bool IsAvailable(unsigned int nPos) const {
         return (nPos < vout.size() && !vout[nPos].IsNull());
