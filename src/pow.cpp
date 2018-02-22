@@ -101,6 +101,7 @@ unsigned int static GetNextWorkRequired_V1(const CBlockIndex* pindexLast, const 
 // AntiGravityWave by reorder, derived from code by Evan Duffield - evan@darkcoin.io
 unsigned int static AntiGravityWave(int64_t version, const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
+    printf("AntiGravityWave: %d\n", version);
     const CBlockIndex *BlockLastSolved = pindexLast;
     const CBlockIndex *BlockReading = pindexLast;
     int64_t nActualTimespan = 0;
@@ -178,17 +179,46 @@ unsigned int static AntiGravityWave(int64_t version, const CBlockIndex* pindexLa
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
-    // -regtest mode
-    if (params.fPowNoRetargeting)
-        return pindexLast->nBits;
+    assert(pindexLast != nullptr);
+    unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
 
-    if (pindexLast->nHeight+1 >= 451000 || (params.fPowAllowMinDifficultyBlocks && pindexLast->nHeight+1 >= 300000)) {
-        return AntiGravityWave(2, pindexLast, pblock, params);
-    } else if (pindexLast->nHeight+1 >= 3600) {
-        return AntiGravityWave(1, pindexLast, pblock, params);
-    } else {
-        return GetNextWorkRequired_V1(pindexLast, pblock, params);
+    // Only change once per difficulty adjustment interval
+    if ((pindexLast->nHeight+1) % params.DifficultyAdjustmentInterval() != 0)
+    {
+        if (params.fPowAllowMinDifficultyBlocks)
+        {
+            // Special difficulty rule for testnet:
+            // If the new block's timestamp is more than 2* 10 minutes
+            // then allow mining of a min-difficulty block.
+            if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing*2)
+                return nProofOfWorkLimit;
+            else
+            {
+                // Return the last non-special-min-difficulty-rules-block
+                const CBlockIndex* pindex = pindexLast;
+                while (pindex->pprev && pindex->nHeight % params.DifficultyAdjustmentInterval() != 0 && pindex->nBits == nProofOfWorkLimit)
+                    pindex = pindex->pprev;
+                return pindex->nBits;
+                  }
+        }
+        return pindexLast->nBits;
     }
+
+    // Go back by what we want to be 14 days worth of blocks
+    // Litecoin: This fixes an issue where a 51% attack can change difficulty at will.
+    // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
+    int blockstogoback = params.DifficultyAdjustmentInterval()-1;
+    if ((pindexLast->nHeight+1) != params.DifficultyAdjustmentInterval())
+        blockstogoback = params.DifficultyAdjustmentInterval();
+
+    // Go back by what we want to be 14 days worth of blocks
+    const CBlockIndex* pindexFirst = pindexLast;
+    for (int i = 0; pindexFirst && i < blockstogoback; i++)
+        pindexFirst = pindexFirst->pprev;
+
+    assert(pindexFirst);
+
+    return CalculateNextWorkRequired(pindexLast, pindexFirst->GetBlockTime(), params);
 }
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params)
@@ -251,5 +281,54 @@ bool CheckAuxPowValidity(const CBlockHeader* pblock, const Consensus::Params& pa
 // TODO LED TMP our interface to PoW --> GetNextWorkRequired()
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
 {
-    return CalculateNextWorkRequired_V1(pindexLast, nFirstBlockTime, params);
+        if (params.fPowNoRetargeting)
+        return pindexLast->nBits;
+
+    // Limit adjustment step
+    int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
+    int64_t nModulatedTimespan = nActualTimespan;
+    if (pindexLast->nHeight+1 >= 145000) {
+        // amplitude filter - thanks to daft27 for this code
+        nModulatedTimespan = params.nPowTargetTimespan + (nModulatedTimespan - params.nPowTargetTimespan)/8;
+
+        if (nModulatedTimespan < (params.nPowTargetTimespan - (params.nPowTargetTimespan/4)) ) nModulatedTimespan = (params.nPowTargetTimespan - (params.nPowTargetTimespan/4));
+        if (nModulatedTimespan > (params.nPowTargetTimespan + (params.nPowTargetTimespan/2)) ) nModulatedTimespan = (params.nPowTargetTimespan + (params.nPowTargetTimespan/2));
+    }
+    else if (pindexLast->nHeight+1 > 10000) {
+        if (nModulatedTimespan < params.nPowTargetTimespan/4)
+            nModulatedTimespan = params.nPowTargetTimespan/4;
+        if (nModulatedTimespan > params.nPowTargetTimespan*4)
+            nModulatedTimespan = params.nPowTargetTimespan*4;
+    }
+    else if (pindexLast->nHeight+1 > 5000)
+    {
+        if (nModulatedTimespan < params.nPowTargetTimespan/8)
+            nModulatedTimespan = params.nPowTargetTimespan/8;
+        if (nModulatedTimespan > params.nPowTargetTimespan*4)
+            nModulatedTimespan = params.nPowTargetTimespan*4;
+    }
+    else
+    {
+        if (nModulatedTimespan < params.nPowTargetTimespan/16)
+            nModulatedTimespan = params.nPowTargetTimespan/16;
+        if (nModulatedTimespan > params.nPowTargetTimespan*4)
+            nModulatedTimespan = params.nPowTargetTimespan*4;
+    }
+
+
+    // Retarget
+    arith_uint256 bnNew;
+    bnNew.SetCompact(pindexLast->nBits);
+    bnNew *= nModulatedTimespan;
+    bnNew /= params.nPowTargetTimespan;
+
+    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
+
+    if (bnNew > bnPowLimit)
+        bnNew = bnPowLimit;
+
+    LogPrintf("%d GetNextWorkRequired() : before: %08x, after: %08x\n",
+       pindexLast->nHeight+1, pindexLast->nBits, bnNew.GetCompact());
+
+    return bnNew.GetCompact();
 }
