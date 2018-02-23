@@ -67,7 +67,7 @@ QImage ColorizeImage(const QString& filename, const QColor& colorbase)
 
 QIcon ColorizeIcon(const QString& filename, const QColor& colorbase)
 {
-    return QIcon(QPixmap::fromImage(ColorizeImage(filename, colorbase)));
+    return QIcon(QPixmap::fromImage(ColorizeImage(filename, QColor("#77A83F"))));
 }
 
 }
