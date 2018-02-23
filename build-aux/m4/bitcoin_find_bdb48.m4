@@ -9,7 +9,7 @@ AC_DEFUN([BITCOIN_FIND_BDB48],[
   bdbpath=X
   bdb48path=X
   bdbdirlist=
-  for _vn in 4.8 48 4 5 ''; do
+  for _vn in 5.3 53 5 ''; do
     for _pfx in b lib ''; do
       bdbdirlist="$bdbdirlist ${_pfx}db${_vn}"
     done
@@ -46,9 +46,7 @@ AC_DEFUN([BITCOIN_FIND_BDB48],[
   elif test "x$bdb48path" = "xX"; then
     BITCOIN_SUBDIR_TO_INCLUDE(BDB_CPPFLAGS,[${bdbpath}],db_cxx)
     AC_ARG_WITH([incompatible-bdb],[AS_HELP_STRING([--with-incompatible-bdb], [allow using a bdb version other than 4.8])],[
-      AC_MSG_WARN([Found Berkeley DB other than 4.8; wallets opened by this build will not be portable!])
-    ],[
-      AC_MSG_ERROR([Found Berkeley DB other than 4.8, required for portable wallets (--with-incompatible-bdb to ignore or --disable-wallet to disable wallet functionality)])
+      AC_MSG_WARN([Found Berkeley DB 5.3; wallets opened by this build will not be portable!])
     ])
   else
     BITCOIN_SUBDIR_TO_INCLUDE(BDB_CPPFLAGS,[${bdb48path}],db_cxx)
