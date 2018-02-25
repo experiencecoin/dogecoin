@@ -129,7 +129,9 @@ public:
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         // TODO - LED - Check which experiencecoin nodes support service bits and add the 'true' flag
-        vSeeds.push_back(CDNSSeedData("108.161.138.245", "108.161.138.245"));
+        vSeeds.push_back(CDNSSeedData("lon.epcnodes.com", "lon.epcnodes.com"));
+        vSeeds.push_back(CDNSSeedData("ny.epcnodes.com", "ny.epcnodes.com"));
+
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,33);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,78);
