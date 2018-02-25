@@ -1741,7 +1741,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     // Force block reward to zero when right shift is undefined.
     if (halvings >= 64)
         return 0;
-    if (nHeight >= 1080000)
+    if (nHeight >= consensusParams.nCLTVStartBlock)
         nSubsidy = 64 * COIN;
     else
         nSubsidy = 17500 * COIN;

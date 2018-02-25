@@ -88,7 +88,7 @@ public:
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 7560; // 75% of nMinerConfirmationWindow
         consensus.nMinerConfirmationWindow = 10080; // 1 week
-        consensus.nCLTVStartBlock = 1080000;
+        consensus.nCLTVStartBlock = 1100000;
         consensus.nBIP66MinStartBlock = 1200000;
         consensus.nAuxPowStartHeight = AuxPow::START_MAINNET;
         consensus.nWitnessStartHeight = 4040000;
