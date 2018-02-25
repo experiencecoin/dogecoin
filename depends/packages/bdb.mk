@@ -1,9 +1,8 @@
 package=bdb
-#BUG TODO This is going to fail, Oracle now asks for login.
 $(package)_version=5.3.28
 $(package)_download_path=http://download.oracle.com/berkeley-db
 $(package)_file_name=db-$($(package)_version).NC.tar.gz
-$(package)_sha256_hash=12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef
+$(package)_sha256_hash=76a25560d9e52a198d37a31440fd07632b5f1f8f9f2b6d55.3f4bc3e7c9013ef
 $(package)_build_subdir=build_unix
 
 define $(package)_set_vars
@@ -14,8 +13,8 @@ $(package)_cxxflags=-std=c++11
 endef
 
 define $(package)_preprocess_cmds
-  sed -i.old 's/__atomic_compare_exchange/__atomic_compare_exchange_db/' dbinc/atomic.h && \
-  sed -i.old 's/atomic_init/atomic_init_db/' dbinc/atomic.h mp/mp_region.c mp/mp_mvcc.c mp/mp_fget.c mutex/mut_method.c mutex/mut_tas.c && \
+  sed -i.old 's/__atomic_compare_exchange/__atomic_compare_exchange_db/' src/dbinc/atomic.h && \
+  sed -i.old 's/atomic_init/atomic_init_db/' src/dbinc/atomic.h src/mp/mp_region.c src/mp/mp_mvcc.c src/mp/mp_fget.c src/mutex/mut_method.c src/mutex/mut_tas.c && \
   cp -f $(BASEDIR)/config.guess $(BASEDIR)/config.sub dist
 endef
 
@@ -24,7 +23,7 @@ define $(package)_config_cmds
 endef
 
 define $(package)_build_cmds
-  $(MAKE) libdb_cxx-4.8.a libdb-4.8.a
+  $(MAKE) libdb_cxx-5.3.a libdb-5.3.a
 endef
 
 define $(package)_stage_cmds
