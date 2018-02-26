@@ -89,9 +89,9 @@ public:
         consensus.nRuleChangeActivationThreshold = 7560; // 75% of nMinerConfirmationWindow
         consensus.nMinerConfirmationWindow = 10080; // 1 week
         consensus.nCLTVStartBlock = 1100000;
-        consensus.nBIP66MinStartBlock = 1200000;
+        consensus.nBIP66MinStartBlock = 1100000;
         consensus.nAuxPowStartHeight = AuxPow::START_MAINNET;
-        consensus.nWitnessStartHeight = 4040000;
+        consensus.nWitnessStartHeight = 1100000;
 
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 6;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
