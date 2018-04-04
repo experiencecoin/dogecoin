@@ -17,6 +17,23 @@ software which enables the use of this currency.
 For more information, as well as an immediately useable, binary version of
 the Experiencecoin Core software, see [https://experiencecoin.org](https://experiencecoin.org).
 
+
+
+Total coins::     21,700,000,000
+Block reward from block 1 to block 1,100,000:  17,500
+Total Coins created from block 1 to block 1,100,000:    19,250,000,000
+Block reward from +1,100,000  64
+Total Remaining Coins created after block 1,100,000  3,207,000,000
+
+Block size:    5 MB
+Block target:    1 minute
+Blocks to half the value:    25,600,000
+Block Difficulty Calculation:     2 Blocks or 10 Minutes
+
+Forked from Viacoin
+
+
+
 License
 -------
 
