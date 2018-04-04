@@ -19,7 +19,7 @@ the Experiencecoin Core software, see [https://experiencecoin.org](https://exper
 
 
 
-Total coins::     21,700,000,000
+Total coins::     ~22,500,000,000
 
 Block reward from block 1 to block 1,100,000:  17,500
 
