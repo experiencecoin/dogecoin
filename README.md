@@ -36,7 +36,7 @@ Block target:    1 minute
 
 Blocks to half the value:    25,600,000
 
-Block Difficulty Calculation:     2 Blocks or 10 Minutes
+Block Difficulty Calculation:     2 Blocks or 2 Minutes
 
 Forked from Viacoin
 
