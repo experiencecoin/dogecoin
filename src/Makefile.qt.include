@@ -110,7 +110,8 @@ QT_FORMS_UI = \
   qt/forms/sendcoinsdialog.ui \
   qt/forms/sendcoinsentry.ui \
   qt/forms/signverifymessagedialog.ui \
-  qt/forms/transactiondescdialog.ui
+  qt/forms/transactiondescdialog.ui \
+  qt/forms/paperwalletdialog.ui
 
 QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
@@ -154,6 +155,7 @@ QT_MOC_CPP = \
   qt/moc_transactiontablemodel.cpp \
   qt/moc_transactionview.cpp \
   qt/moc_utilitydialog.cpp \
+  qt/moc_verticallabel.cpp \
   qt/moc_walletframe.cpp \
   qt/moc_walletmodel.cpp \
   qt/moc_walletview.cpp
@@ -229,12 +231,14 @@ BITCOIN_QT_H = \
   qt/walletmodel.h \
   qt/walletmodeltransaction.h \
   qt/walletview.h \
-  qt/winshutdownmonitor.h
+  qt/winshutdownmonitor.h \
+  qt/verticallabel.h
 
 RES_ICONS = \
   qt/res/icons/add.png \
   qt/res/icons/address-book.png \
   qt/res/icons/about.png \
+  qt/res/icons/paper_wallet.png \
   qt/res/icons/about_qt.png \
   qt/res/icons/bitcoin.ico \
   qt/res/icons/bitcoin_testnet.ico \
@@ -287,6 +291,8 @@ RES_ICONS = \
   qt/res/icons/tx_mined.png \
   qt/res/icons/warning.png \
   qt/res/icons/verify.png \
+  qt/res/icons/paper_wallet.png \
+  qt/res/icons/print.png \
   qt/res/icons/transaction_abandoned.png
 
 BITCOIN_QT_BASE_CPP = \
@@ -340,7 +346,8 @@ BITCOIN_QT_WALLET_CPP = \
   qt/walletframe.cpp \
   qt/walletmodel.cpp \
   qt/walletmodeltransaction.cpp \
-  qt/walletview.cpp
+  qt/walletview.cpp \
+  qt/verticallabel.cpp
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
