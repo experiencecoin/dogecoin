@@ -116,3 +116,8 @@ share/BitcoindComparisonTool.jar
 libbitcoinconsensus.pc
 contrib/devtools/split-debug.sh
 tags
+
+build.w32
+build.w64
+build.linux32
+build.linux64
